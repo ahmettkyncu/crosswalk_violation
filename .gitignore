@@ -7,7 +7,6 @@ output/
 uploads/
 arac_kayitlari/
 debug_plates/
-models/
 weights/
 *.log
 __pycache__/
