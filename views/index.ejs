@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ihlal Yönetim Sistemi</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div class="sidebar">
+
+        <h2>Filtreler</h2>
+
+    <div class="filter-group">
+     <label for="camera-select">Kamera Seç:</label>
+     <select id="camera-select" class="form-select">
+        <option value="all" <%= (!currentFilter || currentFilter === 'all') ? 'selected' : '' %>>Tüm Kameralar</option>
+
+        <% if (cameras && cameras.length > 0) { %>
+            <% cameras.forEach(cam => { %>
+                <% 
+                   // Veritabanında "cam14" gibi duruyor, ekranda düzgün gözüksün diye:
+                   // Eğer veri null değilse işlem yap
+                   let displayName = cam ? cam : 'Bilinmeyen';
+                %>
+                <option value="<%= cam %>" <%= (currentFilter === cam) ? 'selected' : '' %>>
+                    <%= displayName %>
+                </option>
+            <% }) %>
+        <% } else { %>
+            <option disabled>Kamera Bulunamadı</option>
+        <% } %>
+    </select>
+
+
+        </div>
+
+        <div class="filter-group">
+
+            <label for="search-input">Plaka Ara</label>
+
+            <input type="text" id="search-input" placeholder="34ABC123">
+
+        </div>
+
+    </div>
+
+    <div class="main-content">
+
+        <h1>İhlal Yönetim Sistemi</h1>
+
+       <div style="display:flex; gap:20px; margin-bottom:20px;">
+        <div style="background:white; padding:15px; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1); flex:1;">
+            <h3>Toplam Geçen Araç</h3>
+            <span id="total-pass-count" style="font-size:2rem; color:#2c3e50; font-weight:bold;">0</span>
+        </div>
+        <div style="background:white; padding:15px; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1); flex:1;">
+            <h3>Tespit Edilen İhlal</h3>
+            <span id="violation-count" style="font-size:2rem; color:#c0392b; font-weight:bold;">0</span>
+        </div>
+    </div>
+
+    <div class="gallery" id="main-gallery"></div>
+
+    </div>
+
+   
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

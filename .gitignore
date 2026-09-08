@@ -1,0 +1,14 @@
+node_modules/
+.venv/
+.idea/
+.env
+input/
+output/
+uploads/
+arac_kayitlari/
+debug_plates/
+models/
+weights/
+*.log
+__pycache__/
+.DS_Store
